@@ -5,7 +5,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] threads = new int[] {1, 2, 3, 4, 6 };
+        int[] threads = new int[] { 1, 2, 3, 4, 6 };
         Stopwatch stopwatch = new Stopwatch();
 
         Random random = new Random();

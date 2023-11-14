@@ -21,6 +21,14 @@ internal class Program
             { 10, 8 },
         };
 
+
+        var a = ParallelSearchForTools(inventory.Tools, criteria, 1);
+
+        foreach (var item in a)
+        {
+            Console.WriteLine(item.Barcode);
+        }
+
         foreach (var numOfThreads in threads)
         {
             stopwatch.Reset();
@@ -29,6 +37,7 @@ internal class Program
             stopwatch.Stop();
             Console.WriteLine($"The task is done. {numOfThreads} threads have executed the task for {stopwatch.Elapsed}.");
         }
+
     }
 
     public static List<Tool> ParallelSearchForTools(List<Tool> _toolsList, Dictionary<int, int> _criteria, int numOfThreads)

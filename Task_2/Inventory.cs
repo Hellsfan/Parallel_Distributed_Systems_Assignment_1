@@ -17,7 +17,7 @@ namespace Task_2
             {
                 Tool tool = new Tool(
                     rnd.Next(0,100),
-                    rnd.Next(0,999999999),
+                    rnd.Next(0,int.MaxValue),
                     "description"
                     );
 
