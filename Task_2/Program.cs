@@ -16,16 +16,10 @@ internal class Program
         Inventory inventory = new Inventory();
         Dictionary<int, int> criteria = new Dictionary<int, int>()
         {
-            { 1, 5},
-            { 7, 4 },
-            { 10, 3 },
+            { 1, 30},
+            { 7, 15 },
+            { 10, 8 },
         };
-
-        var a=  ParallelSearchForTools(inventory.Tools, criteria, 1);
-        foreach (var item in a)
-        {
-            Console.WriteLine(item.Type);
-        }
 
         foreach (var numOfThreads in threads)
         {
@@ -106,7 +100,6 @@ internal class Program
                 InsertToolToList(tool, results, criteria);
             }
         }
-
 
         return results;
     }
