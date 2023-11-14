@@ -10,23 +10,21 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        int[] threads = new int[] { 1, 1, 2, 3, 4, 6 , 48 };
+        int[] threads = new int[] { 1, 1, 2, 3, 4, 6};
         Stopwatch stopwatch = new Stopwatch();
 
         Inventory inventory = new Inventory();
         Dictionary<int, int> criteria = new Dictionary<int, int>()
         {
-            { 1, 30},
-            { 7, 15 },
-            { 10, 8 },
+            { 1, 5},
+            { 7, 4 },
+            { 10, 3 },
         };
 
-
-        var a = ParallelSearchForTools(inventory.Tools, criteria, 1);
-
+        var a=  ParallelSearchForTools(inventory.Tools, criteria, 1);
         foreach (var item in a)
         {
-            Console.WriteLine(item.Barcode);
+            Console.WriteLine(item.Type);
         }
 
         foreach (var numOfThreads in threads)
@@ -37,7 +35,6 @@ internal class Program
             stopwatch.Stop();
             Console.WriteLine($"The task is done. {numOfThreads} threads have executed the task for {stopwatch.Elapsed}.");
         }
-
     }
 
     public static List<Tool> ParallelSearchForTools(List<Tool> _toolsList, Dictionary<int, int> _criteria, int numOfThreads)
@@ -100,6 +97,7 @@ internal class Program
 
         foreach (var tool in toolsInv)
         {
+            if (CheckIfCriteriaIsMet(criteria)) return results;
             if (!CheckIfToolIsNeeded(tool, criteria)) continue;
             lock (locker)
             {
@@ -107,7 +105,6 @@ internal class Program
 
                 InsertToolToList(tool, results, criteria);
             }
-            if (CheckIfCriteriaIsMet(criteria)) return results;
         }
 
 
